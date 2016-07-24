@@ -3,5 +3,6 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
+   :global-vars {*warn-on-reflection* true}
   :dependencies [[org.clojure/clojure "1.8.0"]
                             [org.jsoup/jsoup "1.9.2"]])
