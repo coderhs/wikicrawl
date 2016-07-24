@@ -1,4 +1,5 @@
 (ns wikicrawl.core
+  (:require [clojure.string :as s])
   (:import [org.jsoup Jsoup]))
 
 (def url
@@ -11,7 +12,7 @@
   (.text (.select doc "h1")))
 
 (defn last-modified [doc]
-  (.text (.select doc "#footer-info-lastmod")))
+  (last (s/split (.text (.select doc "#footer-info-lastmod")) #"last modified on ")))
 
 (defn first-paragraph [doc]
   (.text (first (.select doc "p"))))
