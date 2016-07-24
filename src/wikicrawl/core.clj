@@ -18,4 +18,4 @@
   (.text (first (.select doc "#mw-content-text p"))))
 
 (defn table-of-content [doc]
-  (.text (.select doc "#toc")))
+   (map #(.text %) (.select doc ".toctext")))
