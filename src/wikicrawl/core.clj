@@ -15,7 +15,7 @@
   (last (s/split (.text (.select doc "#footer-info-lastmod")) #"last modified on ")))
 
 (defn first-paragraph [doc]
-  (.text (first (.select doc "p"))))
+  (.text (first (.select doc "#mw-content-text p"))))
 
 (defn table-of-content [doc]
   (.text (.select doc "#toc")))
