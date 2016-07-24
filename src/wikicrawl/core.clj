@@ -1,6 +1,8 @@
-(ns wikicrawl.core)
+(ns wikicrawl.core
+  (:import [org.jsoup Jsoup]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(def url
+    "https://en.wikipedia.org/wiki/clojure")
+
+(defn fetch-url [url]
+  (.get (Jsoup/connect url)))
