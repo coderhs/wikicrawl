@@ -16,4 +16,5 @@
 (defn first-paragraph [doc]
   (.text (first (.select doc "p"))))
 
-
+(defn table-of-content [doc]
+  (.text (.select doc "#toc")))
