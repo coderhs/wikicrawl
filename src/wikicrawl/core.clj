@@ -2,6 +2,9 @@
   (:require [clojure.string :as s])
   (:import [org.jsoup Jsoup]))
 
+(defn text [x]
+  (.text x))
+
 (def url
     "https://en.wikipedia.org/wiki/clojure")
 
@@ -9,13 +12,13 @@
   (.get (Jsoup/connect url)))
 
 (defn page-title [doc]
-  (.text (.select doc "h1")))
+  (text (.select doc "h1")))
 
 (defn last-modified [doc]
-  (last (s/split (.text (.select doc "#footer-info-lastmod")) #"last modified on ")))
+  (last (s/split (text (.select doc "#footer-info-lastmod")) #"last modified on ")))
 
 (defn first-paragraph [doc]
-  (.text (first (.select doc "#mw-content-text p"))))
+  (text (first (.select doc "#mw-content-text p"))))
 
 (defn table-of-content [doc]
-   (map #(.text %) (.select doc ".toctext")))
+   (map text (.select doc ".toctext")))
