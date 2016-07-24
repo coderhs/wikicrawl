@@ -13,4 +13,7 @@
 (defn last-modified [doc]
   (.text (.select doc "#footer-info-lastmod")))
 
+(defn first-paragraph [doc]
+  (.text (first (.select doc "p"))))
+
 
