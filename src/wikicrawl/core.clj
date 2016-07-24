@@ -6,3 +6,8 @@
 
 (defn fetch-url [url]
   (.get (Jsoup/connect url)))
+
+(defn page-title [doc]
+  (.text (.select doc "h1")))
+
+
