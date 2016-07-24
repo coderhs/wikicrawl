@@ -1,8 +1,9 @@
 (ns wikicrawl.core
   (:require [clojure.string :as s])
-  (:import [org.jsoup Jsoup]))
+  (:import [org.jsoup Jsoup]
+                [org.jsoup.nodes Document Element]))
 
-(defn text [x]
+(defn text [^Element x]
   (.text x))
 
 (def url
@@ -11,14 +12,14 @@
 (defn fetch-url [url]
   (.get (Jsoup/connect url)))
 
-(defn page-title [doc]
+(defn page-title [^Document doc]
   (text (.select doc "h1")))
 
-(defn last-modified [doc]
+(defn last-modified [^Document doc]
   (last (s/split (text (.select doc "#footer-info-lastmod")) #"last modified on ")))
 
-(defn first-paragraph [doc]
+(defn first-paragraph [^Document doc]
   (text (first (.select doc "#mw-content-text p"))))
 
-(defn table-of-content [doc]
+(defn table-of-content [^Document doc]
    (map text (.select doc ".toctext")))
