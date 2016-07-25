@@ -55,9 +55,12 @@
   (let [filename (s/replace title #"\s|/" "_")]
     (spit (str "scraped/" filename ".edn") (pr-str page))))
 
+(def scrape-counter (atom 0))
+
 (defn scrape [wiki-link num-links-to-follow depth]
   (let [page (info wiki-link num-links-to-follow)]
     (write page)
+    (swap! scrape-counter inc)
     (when-not (zero? depth)
       (doall
         (pmap (fn [link] (scrape link num-links-to-follow (dec depth)))
@@ -65,4 +68,5 @@
         )
       )
     )
-))
+  )
+  )
